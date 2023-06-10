@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block content_title %}
+Detail Booking N°{{object}}
+{% endblock content_title %}
+
+{% block content %}
+
+<div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="flex items-center justify-center min-h-screen p-4 pb-20 text-center sm:block sm:p-0 ">
+        <div class="fixed inset-0 bg-gray-700 bg-opacity-75 transition-opacity dark:bg-gray-500" aria-hidden="true"></div>
+            <div class="relative inline-block align-bottom rounded-lg overflow-hidden shadow-xl transform transition-all sm:my-4 sm:align-middle sm:max-w-2xl sm:w-full">
+                <div class="flex items-baseline justify-center">
+                    
+                    <div class="w-full max-w-lg px-4 py-2 bg-white border border-gray-200 rounded-lg shadow-md sm:p-1 md:p-1 dark:bg-gray-800 dark:border-gray-700">
+                        
+                        <h5 class="text-xl font-medium text-gray-900 dark:text-white shadow-md uppercase">Detail Booking N°{{object}}</h5>
+
+                            <div class="w-full max-w-xs mx-auto p-2 dark:bg-gray-800 dark:border-gray-700">
+                                
+                                <ol class="mt-3 dark:divide-gray-700">
+                                    <li>
+                                        <div class="text-left text-gray-600 dark:text-gray-400">
+                                            <div class="text-base font-normal">
+                                                <span class="font-medium text-gray-900 dark:text-white">
+                                                    Client:
+                                                </span> &nbsp;
+                                                {{object.client}}  
+                                                <span class="font-medium text-gray-900 dark:text-white"><br>
+                                                    Profile:
+                                                </span> &nbsp;
+                                                {{object.profile}}
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="text-left text-gray-600 dark:text-gray-400">
+                                            <div class="text-base font-normal">
+                                                <span class="font-medium text-gray-900 dark:text-white">
+                                                    Room:
+                                                </span> &nbsp;
+                                                {{object.room.name}}
+                                                <span class="font-medium text-gray-900 dark:text-white"><br>
+                                                    Hour active:
+                                                </span> &nbsp;
+                                                {{object.active.astimezone.time}} 
+                                                <span class="font-medium text-gray-900 dark:text-white"><br>
+                                                    Time:
+                                                </span> &nbsp;
+                                                {{object.time_service|floatformat:0}} min
+                                                <span class="font-medium text-gray-900 dark:text-white"><br>
+                                                    Finalize:
+                                                </span> &nbsp;
+                                                {{finalize_time.time}}
+                                                
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </div>
+
+                        <label class="pt-1 block text-sm font-medium text-gray-900 dark:text-white uppercase">Service</label>
+                        <div class="flex flex-wrap items-stretch justify-center pt-2">
+                        {% for service in service %}
+                           
+                            <div class="w-52 p-1">
+                                <label class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" >
+                                    {{service.name_service}}
+                                </label>
+                            </div>
+                        {% endfor %}
+                        </div>  
+
+                        {% if request.user.profileuser.position == 'masseur' %}
+                        <div class="p-1">
+                            <a href="{% url 'booking:add_serviceaditional_gte' object.id %}" 
+                                class="flex w-full justify-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                Add Service
+                            </a>
+                        </div>
+                        {% else %}
+                        <div class="p-1">
+                            <a href="{% url 'booking:list_booking_active_gestion' %}" 
+                                class="flex w-full justify-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                Back
+                            </a>
+                        </div>
+                        {% endif %}
+                        <div class="p-1">
+                            <a href="{% url 'booking:finalized_booking' object.id %}" 
+                                class="flex w-full justify-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                Finalize
+                            </a>
+                        </div>
+                    </div>   
+                </div>                    
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
