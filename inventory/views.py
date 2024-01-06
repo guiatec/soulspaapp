@@ -188,7 +188,7 @@ class ListViewCellarGlobal(LoginRequiredMixin, ListView):
     """ Cellarglobal all view. """
 
     template_name = 'inventory/cellarglobal/list_cellarglobal.html'
-    paginate_by = 15
+    paginate_by = 25
     context_object_name = 'cellarglobal'  
 
     def dispatch(self, request, *args, **kwargs):
