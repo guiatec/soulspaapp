@@ -56,7 +56,7 @@ class OutCellarAdmin(ImportExportModelAdmin):
     resource_class = OutCellarResource
     list_display = ('id', 'article', 'amount', 'date',)
     search_fields = ('article', )
-    list_per_page = 999
+    list_per_page = 500
 
 
 class InCellarResource(resources.ModelResource):
@@ -72,7 +72,7 @@ class InCellarAdmin(ImportExportModelAdmin):
     resource_class = InCellarResource
     list_display = ('id', 'article', 'amount', 'date',)
     search_fields = ('article', )
-    list_per_page = 999
+    list_per_page = 500
 
 
 class CellarGlobalResource(resources.ModelResource):
