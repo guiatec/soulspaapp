@@ -21,7 +21,7 @@ Create service
                                 
                                 {% for field in form %}
                                     <div class="w-52 p-2">
-                                        <label for="{{field.name}}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{field.label}}</label>
+                                        <label for="{{field.name}}" step="any" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{field.label}}</label>
                                         {% if field.errors %}                                    
                                             <span class='text-red-600 text-xs'>{{field.errors}}</span>
                                         {%endif%}
