@@ -21,12 +21,12 @@ Create service
                                 
                                 {% for field in form %}
                                     <div class="w-52 p-2">
-                                        <label for="{{field.name}}" step="any" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{field.label}}</label>
+                                        <label for="{{field.name}}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{field.label}}</label>
                                         {% if field.errors %}                                    
                                             <span class='text-red-600 text-xs'>{{field.errors}}</span>
                                         {%endif%}
                                         
-                                        <input type="{{field.field.widget.input_type}}" name="{{field.name}}" id="{{field.name}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                                        <input type="{{field.field.widget.input_type}}" name="{{field.name}}" id="{{field.name}}" step="any" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
                                     </div>
 
                                 {% endfor %}
